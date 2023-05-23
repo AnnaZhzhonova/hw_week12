@@ -12,11 +12,13 @@ const user = {
 //Изменение регистра имени
 function modifyUserName() {
   if (!user.name) return user.name;
-  return user.name[0].toUpperCase() + user.name.slice(1).toLowerCase();
+  return (
+    user.name[0].toUpperCase() + user.name.slice(1).toLowerCase()
+  ).replace(" ", "");
 }
 
 console.log(modifyUserName());
 
 let commentName = document.querySelector(".comment__name");
 
-button.addEventListener("click", postComment(), {});
+/* button.addEventListener("click", postComment(), {}); */
