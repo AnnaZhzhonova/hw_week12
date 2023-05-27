@@ -25,8 +25,9 @@ function showAvatar(src) {
 //антиспам
 
 function checkSpam(str) {
-  const spamWord = / (viagra|XXX) /gi;
-  return str.replace(spamWord, "***");
+  //const spamWord = / (viagra|XXX) /gi;
+  str.replace(viagra / gi, "***");
+  str.replace(XXX / gi, "***");
 }
 
 const button = document.querySelector(".button");
@@ -54,9 +55,5 @@ button.addEventListener("click", () => {
 
   userLink.value = null;
 
-  if (userText.textContent === "") {
-    alert("Заполните все обязательные поля!");
-  } else {
-    commentText.textContent = checkSpam(userText.textContent);
-  }
+  commentText.textContent = checkSpam(userText.textContent);
 });
