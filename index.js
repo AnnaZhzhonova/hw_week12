@@ -1,24 +1,62 @@
-const userNameInput = document.querySelector("#user-name");
-const userLinkInput = document.querySelector("#user-link");
-const userTextInput = document.querySelector("#user-text");
-const button = document.querySelector(".button");
-
-const user = {
-  name: userNameInput.value,
-  avatar: userLinkInput.value,
-  text: userTextInput.textContent,
-};
+const userName = document.querySelector("#user-name");
+const userLink = document.querySelector("#user-link");
+const userText = document.querySelector("#user-text");
 
 //Изменение регистра имени
 function modifyUserName() {
-  if (!user.name) return user.name;
-  return (
-    user.name[0].toUpperCase() + user.name.slice(1).toLowerCase()
-  ).replace(" ", "");
+  if (!userName.value) {
+    return userName.value;
+  } else {
+    return (
+      userName.value[0].toUpperCase() + userName.value.slice(1).toLowerCase()
+    ).trim();
+  }
 }
 
-console.log(modifyUserName());
+//добавление фото
+const commentAvatar = document.querySelector(".comment__avatar");
 
-let commentName = document.querySelector(".comment__name");
+function showAvatar(src) {
+  let image = document.createElement("img");
+  image.src = src;
+  commentAvatar.append(image);
+}
 
-/* button.addEventListener("click", postComment(), {}); */
+//антиспам
+
+function checkSpam(str) {
+  const spamWord = / (viagra|XXX) /gi;
+  return str.replace(spamWord, "***");
+}
+
+const button = document.querySelector(".button");
+const commentName = document.querySelector(".comment__name");
+const commentText = document.querySelector(".comment__text");
+const plugName = "Anonimus";
+const plugAvatar = "./assets/images/avatar_null.jpg";
+
+//чтото надо сделать с кнопкой
+button.addEventListener("click", () => {
+  if (userName.value === "") {
+    commentName.textContent = plugName;
+  } else {
+    commentName.textContent = modifyUserName(userName.value);
+  }
+  userName.value = null;
+
+  if (userLink.value === "") {
+    let image = document.createElement("img");
+    image.src = plugAvatar;
+    commentAvatar.append(image);
+  } else {
+    showAvatar(userLink.value);
+  }
+
+  userLink.value = null;
+
+  if (userText.textContent === "") {
+    alert("Заполните все обязательные поля!");
+  } else {
+    commentText.textContent = checkSpam(userText.textContent);
+  }
+});

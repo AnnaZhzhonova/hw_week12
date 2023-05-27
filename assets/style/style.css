@@ -11,8 +11,10 @@ body {
   max-width: 1440px;
   margin: 0 auto;
 }
-.user {
+.chat {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 .title {
@@ -20,8 +22,9 @@ body {
 }
 .user-data,
 .comment {
-  width: 45%;
+  width: 80%;
   padding: 15px;
+  margin: 10px 0 30px;
   border: 2px solid #2635b9;
   border-radius: 3px;
 }
@@ -40,7 +43,7 @@ body {
 }
 .button {
   margin: 20px 0;
-  width: 40%;
+  width: 150px;
   height: 40px;
   font-family: "Montserrat";
   background-color: #2635b9;
