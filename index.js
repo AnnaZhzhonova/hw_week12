@@ -25,9 +25,9 @@ function showAvatar(src) {
 //антиспам
 
 function checkSpam(str) {
-  //const spamWord = / (viagra|XXX) /gi;
-  str.replace(viagra / gi, "***");
-  str.replace(XXX / gi, "***");
+  str = str.replace(/viagra/i, "***");
+  str = str.replace(/XXX/i, "***");
+  return str;
 }
 
 const button = document.querySelector(".button");
@@ -52,8 +52,8 @@ button.addEventListener("click", () => {
   } else {
     showAvatar(userLink.value);
   }
-
   userLink.value = null;
 
   commentText.textContent = checkSpam(userText.textContent);
+  userText.textContent = null;
 });
