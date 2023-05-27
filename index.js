@@ -25,8 +25,8 @@ function showAvatar(src) {
 //антиспам
 
 function checkSpam(str) {
-  str = str.replace(/viagra/i, "***");
-  str = str.replace(/XXX/i, "***");
+  str = str.replace(/viagra/gi, "***");
+  str = str.replace(/XXX/gi, "***");
   return str;
 }
 
@@ -54,6 +54,11 @@ button.addEventListener("click", () => {
   }
   userLink.value = null;
 
-  commentText.textContent = checkSpam(userText.textContent);
+  if (userText.textContent === "") {
+    commentText.textContent = "Я люблю котиков";
+  } else {
+    commentText.textContent = checkSpam(userText.textContent);
+  }
+
   userText.textContent = null;
 });
