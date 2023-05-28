@@ -1,8 +1,7 @@
 function deleteTags(str) {
   let result = str;
-  result = result.replace(/<(.|\n)*?>/g, "");
-
-  return result.trim();
+  result = result.replace(/<(.)*?>/g, "");
+  return result;
 }
-
-console.log(deleteTags(str));
+const container = document.querySelector(".container").innerHTML;
+console.log(deleteTags(container));
