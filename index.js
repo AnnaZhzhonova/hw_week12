@@ -30,6 +30,25 @@ function checkSpam(str) {
   return str;
 }
 
+function createNewComment(userName, avatar, comment) {}
+
+/* const createHTML = (userName, link, text) => {
+  const htmlElements = [];
+  htmlElements.push('<div class="comment">');
+
+  let srcSrtring = `<img class="userphoto" src="${link}" alt="userLogo">`;
+  htmlElements.push(srcSrtring);
+  let userNameString = `<strong class='userHeader'>${userName}</strong>`;
+  htmlElements.push(userNameString);
+  let commentString = `<p class='comment-content'>${text}</p>`;
+  htmlElements.push(`${commentString}`);
+  const currentTime = getDate();
+  htmlElements.push(`<div class='posttime'>${currentTime}</div>`);
+  htmlElements.push(`</div>`);
+
+  return htmlElements.join("");
+}; */
+
 const button = document.querySelector(".button");
 const commentName = document.querySelector(".comment__name");
 const commentText = document.querySelector(".comment__text");
@@ -37,7 +56,9 @@ const plugName = "Anonimus";
 const plugAvatar = "./assets/images/avatar_null.jpg";
 
 //чтото надо сделать с кнопкой
-button.addEventListener("click", () => {
+button.addEventListener("click", (event) => {
+  event.preventDefault();
+
   if (userName.value === "") {
     commentName.textContent = plugName;
   } else {
@@ -54,11 +75,11 @@ button.addEventListener("click", () => {
   }
   userLink.value = null;
 
-  if (userText.textContent === "") {
-    commentText.textContent = "Я люблю котиков";
+  if (userText.value === "") {
+    commentText.value = "Я люблю котиков";
   } else {
-    commentText.textContent = checkSpam(userText.textContent);
+    commentText.textContent = checkSpam(userText.value);
   }
 
-  userText.textContent = null;
+  userText.value = null;
 });
