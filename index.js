@@ -19,8 +19,7 @@ function showAvatar(src) {
 }
 
 function checkSpam(str) {
-  str = str.replace(/viagra/gi, "***");
-  str = str.replace(/XXX/gi, "***");
+  str = str.replace(/(viagra|XXX)/gi, "***");
   return str;
 }
 
