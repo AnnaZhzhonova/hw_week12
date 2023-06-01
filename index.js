@@ -5,9 +5,8 @@ const userText = document.querySelector("#user-text");
 function modifyUserName(str) {
   if (!str) {
     return str;
-  } else {
-    return (str[0].toUpperCase() + str.slice(1).toLowerCase()).trim();
   }
+  return (str[0].toUpperCase() + str.slice(1).toLowerCase()).trim();
 }
 
 const commentAvatar = document.querySelector(".comment__avatar");
@@ -19,8 +18,7 @@ function showAvatar(src) {
 }
 
 function checkSpam(str) {
-  str = str.replace(/(viagra|XXX)/gi, "***");
-  return str;
+  return str.replace(/(viagra|XXX)/gi, "***");
 }
 
 const button = document.querySelector(".button");
@@ -37,7 +35,7 @@ button.addEventListener("click", (event) => {
   } else {
     commentName.textContent = modifyUserName(userName.value);
   }
-  userName.value = null;
+  //userName.value = null;
 
   if (userLink.value === "") {
     let image = document.createElement("img");
@@ -46,7 +44,7 @@ button.addEventListener("click", (event) => {
   } else {
     showAvatar(userLink.value);
   }
-  userLink.value = null;
+  //userLink.value = null;
 
   if (userText.value === "") {
     commentText.value = "Я люблю котиков";
@@ -54,5 +52,6 @@ button.addEventListener("click", (event) => {
     commentText.textContent = checkSpam(userText.value);
   }
 
-  userText.value = null;
+  document.querySelector(".user-data").reset();
+  // userText.value = null;
 });
