@@ -24,8 +24,29 @@ function checkSpam(str) {
 const button = document.querySelector(".button");
 const commentName = document.querySelector(".comment__name");
 const commentText = document.querySelector(".comment__text");
-const plugName = "Anonimus";
-const plugAvatar = "./assets/images/avatar_null.jpg";
+const plugName = "username";
+
+//аватарки
+const arrayAvatars = [
+  "./assets/images/avatar_1.jpg",
+  "./assets/images/avatar_2.jpg",
+  "./assets/images/avatar_3.jpg",
+  "./assets/images/avatar_4.jpg",
+  "./assets/images/avatar_5.jpg",
+];
+const randomAvatar =
+  arrayAvatars[Math.floor(Math.random() * arrayAvatars.length)];
+
+//время
+const postingTime = document.querySelector("#time");
+const date = new Date();
+const options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+};
 
 button.addEventListener("click", (event) => {
   event.preventDefault();
@@ -35,23 +56,20 @@ button.addEventListener("click", (event) => {
   } else {
     commentName.textContent = modifyUserName(userName.value);
   }
-  //userName.value = null;
 
   if (userLink.value === "") {
     let image = document.createElement("img");
-    image.src = plugAvatar;
+    image.src = randomAvatar;
     commentAvatar.append(image);
   } else {
     showAvatar(userLink.value);
   }
-  //userLink.value = null;
 
   if (userText.value === "") {
     commentText.value = "Я люблю котиков";
   } else {
     commentText.textContent = checkSpam(userText.value);
   }
-
+  postingTime.textContent = date.toLocaleString("ru", options);
   document.querySelector(".user-data").reset();
-  // userText.value = null;
 });
